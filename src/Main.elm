@@ -22,7 +22,6 @@ main =
           , b = { x = 250.0, y = 0.0 }
           , c = { x = 0.0, y = 250.0 } }
   in
-    box |> turnBox
-        |> createPicture fLetter
+    box |> flip (createPicture fLetter)
         |> toSvgWithBoxes (500, 500) [ ]
         |> placeInsideDiv
