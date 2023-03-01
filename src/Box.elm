@@ -24,9 +24,24 @@ flipBox {a, b, c} =
   , b = neg b 
   , c = c}
 
-  -- Exercise 3 
+-- Exercise 3 
 tossBox : Box -> Box 
 tossBox {a, b, c} = 
   { a = add a (scale 0.5 (add b c))
   , b = scale 0.5 (add b c)
   , c = scale 0.5 (sub c b)}
+
+-- Exercise 4 
+
+
+shrunkBox : Box -> Box 
+shrunkBox {a, b, c} =
+  { a = a
+  , b = b
+  , c = scale 0.5 c}
+
+upBox : Box -> Box 
+upBox {a, b, c} = 
+  { a = add a (scale 0.5 c)
+  , b = b
+  , c = c}

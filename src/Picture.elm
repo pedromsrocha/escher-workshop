@@ -36,7 +36,10 @@ aboveRatio : Int -> Int -> Picture -> Picture -> Picture
 aboveRatio m n p1 p2 = blank
 
 above : Picture -> Picture -> Picture 
-above p1 p2 = blank 
+above p1 p2 = \box ->   (box |> (upBox >> shrunkBox >> p1))
+                        ++
+                        (box |> (shrunkBox >> p2))
+
 
 -- Exercise 5
 
