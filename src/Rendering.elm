@@ -21,6 +21,12 @@ getStrokeWidthFromStyle style =
     Just { strokeWidth } -> sqrt strokeWidth
     Nothing -> 2.0
 
+getStrokeColorFromStyle : Maybe StrokeStyle -> String
+getStrokeColorFromStyle style = 
+  case style of 
+    Just { strokeColor } -> strokeColor
+    Nothing -> "Black"
+
 toPolygonElement : Style -> List Vector -> Svg msg
 toPolygonElement style pts = 
   let 
@@ -62,10 +68,11 @@ toCurveElement style pt1 pt2 pt3 pt4 =
     pt3s = toStr pt3 
     pt4s = toStr pt4 
     dval = "M" ++ pt1s ++ " C " ++ pt2s ++ ", " ++ pt3s ++ ", " ++ pt4s
-    sw = getStrokeWidthFromStyle style.stroke  
+    sw = getStrokeWidthFromStyle style.stroke 
+    sc = getStrokeColorFromStyle style.stroke  
   in 
     Svg.path 
-      [ stroke "Black"
+      [ stroke sc
       , strokeWidth <| f2s sw
       , fill "None"
       , d dval ] []
