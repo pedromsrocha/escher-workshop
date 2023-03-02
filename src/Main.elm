@@ -18,9 +18,9 @@ placeInsideDiv svg =
 main : Svg msg
 main = 
   let 
-    box = { a = { x = 125.0, y = 75.0 }
-          , b = { x = 250.0, y = 0.0 }
-          , c = { x = 0.0, y = 250.0 } }
+    box = { a = { x = 0.0, y = 0.0 }
+          , b = { x = 500.0, y = 0.0 }
+          , c = { x = 0.0, y = 500.0 } }
     fish = createPicture fishShapes
   in
     box |> squareLimit 3 fish
