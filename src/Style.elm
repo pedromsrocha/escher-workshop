@@ -1,6 +1,6 @@
 module Style exposing (..)
 
-type StyleColor = Black | Grey | White 
+type alias StyleColor = String
 
 type alias StrokeStyle = 
   { strokeWidth : Float 
