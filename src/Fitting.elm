@@ -21,7 +21,7 @@ getStyle : Box -> Style
 getStyle box = 
   let sw = getStrokeWidth box in
   { stroke = Just { strokeWidth = sw
-                  , strokeColor = Black } 
+                  , strokeColor = "Green" } 
   , fill = Nothing }
 
 mapShape : (Vector -> Vector) -> Shape -> Shape 
