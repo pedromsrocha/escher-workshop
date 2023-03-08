@@ -4,6 +4,7 @@ import Box exposing (..)
 import Shape exposing (..)
 import Style exposing (..)
 import List exposing (map)
+import Svg.Attributes exposing (stroke)
 
 type alias Rendering = List (Shape, Style)
 
@@ -104,20 +105,20 @@ overall ps =
 ttile : Picture -> Picture
 ttile fish = 
   let 
-    fishN = fish |> toss |> flip -- green 
-    fishE = fishN |> turn |> turn |> turn -- ref 
+    fishN = fish |> toss |> flip |> strokeColorPic "Red"  
+    fishE = fishN |> turn |> turn |> turn |> strokeColorPic "Blue" 
   in 
-    over fish (over fishN fishE) -- fish blue 
+    over (fish |> strokeColorPic "Green") (over fishN fishE) 
 
 -- Exercise 10
 
 utile : Picture -> Picture 
 utile fish = 
   let 
-    fishN = fish |> toss |> flip -- green 
-    fishW = turn fishN -- red 
-    fishS = turn fishW --green 
-    fishE = turn fishS -- red 
+    fishN = fish |> toss |> flip |> strokeColorPic "Red"  
+    fishW = turn fishN |> strokeColorPic "Blue"
+    fishS = turn fishW |> strokeColorPic "Red" 
+    fishE = turn fishS |> strokeColorPic "Green"
   in 
     over fishN (over fishW (over fishS fishE))
 
