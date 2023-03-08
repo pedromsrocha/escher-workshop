@@ -14,15 +14,23 @@ blank : Picture
 blank _ = []
 
 
--- color scheme 
-color1 : StyleColor 
-color1 = "Red"
+type alias ColorScheme =
+  {a : StyleColor
+  ,b : StyleColor
+  ,c : StyleColor}
 
-color2 : StyleColor 
-color2 = "Green"
+colorBright : ColorScheme 
+colorBright = {a ="#f5640a", b = "#bd770d", c = "#bd100d" }
 
-color3 : StyleColor 
-color3 = "Blue"
+colorDark : ColorScheme 
+colorDark = {a ="#4d0b61", b = "#cf087c", c = "#7146f2" }
+-- bright color scheme 
+
+bright : Bool
+bright = True
+
+colorScheme : ColorScheme 
+colorScheme = if bright then colorBright else colorDark 
 
 -- set the stroke color of a picture 
 strokeColorPic : StyleColor -> Picture -> Picture 
@@ -115,20 +123,20 @@ overall ps =
 ttile : Picture -> Picture
 ttile fish = 
   let 
-    fishN = fish |> toss |> flip |> strokeColorPic color1  
-    fishE = fishN |> turn |> turn |> turn |> strokeColorPic color3 
+    fishN = fish |> toss |> flip |> strokeColorPic colorScheme.a  
+    fishE = fishN |> turn |> turn |> turn |> strokeColorPic colorScheme.c 
   in 
-    over (fish |> strokeColorPic color2) (over fishN fishE) 
+    over (fish |> strokeColorPic colorScheme.b) (over fishN fishE) 
 
 -- Exercise 10
 
 utile : Picture -> Picture 
 utile fish = 
   let 
-    fishN = fish |> toss |> flip |> strokeColorPic color1  
-    fishW = turn fishN |> strokeColorPic color3
-    fishS = turn fishW |> strokeColorPic color1 
-    fishE = turn fishS |> strokeColorPic color2
+    fishN = fish |> toss |> flip |> strokeColorPic colorScheme.a  
+    fishW = turn fishN |> strokeColorPic colorScheme.c
+    fishS = turn fishW |> strokeColorPic colorScheme.a 
+    fishE = turn fishS |> strokeColorPic colorScheme.b
   in 
     over fishN (over fishW (over fishS fishE))
 
