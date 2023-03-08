@@ -3,6 +3,7 @@ module Picture exposing (..)
 import Box exposing (..)
 import Shape exposing (..)
 import Style exposing (..)
+import List exposing (map)
 
 type alias Rendering = List (Shape, Style)
 
@@ -10,6 +11,12 @@ type alias Picture = Box -> Rendering
 
 blank : Picture 
 blank _ = []
+
+
+-- set the stroke color of a picture 
+strokeColorPic : StyleColor -> Picture -> Picture 
+strokeColorPic color p = p >> map (\(x,y) -> (x, strokeColorStyle color y))
+
 
 -- Exercise 1
 
@@ -97,20 +104,20 @@ overall ps =
 ttile : Picture -> Picture
 ttile fish = 
   let 
-    fishN = fish |> toss |> flip
-    fishE = fishN |> turn |> turn |> turn 
+    fishN = fish |> toss |> flip -- green 
+    fishE = fishN |> turn |> turn |> turn -- ref 
   in 
-    over fish (over fishN fishE)
+    over fish (over fishN fishE) -- fish blue 
 
 -- Exercise 10
 
 utile : Picture -> Picture 
 utile fish = 
   let 
-    fishN = fish |> toss |> flip
-    fishW = turn fishN
-    fishS = turn fishW
-    fishE = turn fishS
+    fishN = fish |> toss |> flip -- green 
+    fishW = turn fishN -- red 
+    fishS = turn fishW --green 
+    fishE = turn fishS -- red 
   in 
     over fishN (over fishW (over fishS fishE))
 
