@@ -21,7 +21,7 @@ main =
     box = { a = { x = 0.0, y = 0.0 }
           , b = { x = 500.0, y = 0.0 }
           , c = { x = 0.0, y = 500.0 } }
-    fish = createPicture fishShapes
+    fish = createPicture fishShapes "Red"
   in
     box |> squareLimit 3 fish
         |> toSvgWithBoxes (500, 500) [ ]

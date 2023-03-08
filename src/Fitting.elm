@@ -17,11 +17,11 @@ getStrokeWidth { b, c } =
   in
     s / 80.0
 
-getStyle : Box -> Style
-getStyle box = 
+getStyle : Box -> StyleColor -> Style
+getStyle box color  = 
   let sw = getStrokeWidth box in
   { stroke = Just { strokeWidth = sw
-                  , strokeColor = "Green" } 
+                  , strokeColor = color } 
   , fill = Nothing }
 
 mapShape : (Vector -> Vector) -> Shape -> Shape 
@@ -39,10 +39,10 @@ mapShape m shape =
 
     x -> x
 
-createPicture : List Shape -> Picture
-createPicture shapes box = 
+createPicture : List Shape -> StyleColor -> Picture
+createPicture shapes color box = 
   let 
     m = mapper box
-    style = getStyle box
+    style = getStyle box color 
   in 
     shapes |> List.map (mapShape m) |> List.map (\s -> (s, style))
