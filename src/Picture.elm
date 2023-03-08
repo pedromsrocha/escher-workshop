@@ -14,6 +14,16 @@ blank : Picture
 blank _ = []
 
 
+-- color scheme 
+color1 : StyleColor 
+color1 = "Red"
+
+color2 : StyleColor 
+color2 = "Green"
+
+color3 : StyleColor 
+color3 = "Blue"
+
 -- set the stroke color of a picture 
 strokeColorPic : StyleColor -> Picture -> Picture 
 strokeColorPic color p = p >> map (\(x,y) -> (x, strokeColorStyle color y))
@@ -105,20 +115,20 @@ overall ps =
 ttile : Picture -> Picture
 ttile fish = 
   let 
-    fishN = fish |> toss |> flip |> strokeColorPic "Red"  
-    fishE = fishN |> turn |> turn |> turn |> strokeColorPic "Blue" 
+    fishN = fish |> toss |> flip |> strokeColorPic color1  
+    fishE = fishN |> turn |> turn |> turn |> strokeColorPic color3 
   in 
-    over (fish |> strokeColorPic "Green") (over fishN fishE) 
+    over (fish |> strokeColorPic color2) (over fishN fishE) 
 
 -- Exercise 10
 
 utile : Picture -> Picture 
 utile fish = 
   let 
-    fishN = fish |> toss |> flip |> strokeColorPic "Red"  
-    fishW = turn fishN |> strokeColorPic "Blue"
-    fishS = turn fishW |> strokeColorPic "Red" 
-    fishE = turn fishS |> strokeColorPic "Green"
+    fishN = fish |> toss |> flip |> strokeColorPic color1  
+    fishW = turn fishN |> strokeColorPic color3
+    fishS = turn fishW |> strokeColorPic color1 
+    fishE = turn fishS |> strokeColorPic color2
   in 
     over fishN (over fishW (over fishS fishE))
 
