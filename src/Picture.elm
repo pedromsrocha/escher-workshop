@@ -4,7 +4,6 @@ import Box exposing (..)
 import Shape exposing (..)
 import Style exposing (..)
 import List exposing (map)
-import Svg.Attributes exposing (stroke)
 
 type alias Rendering = List (Shape, Style)
 
@@ -20,8 +19,9 @@ type alias ColorScheme =
   ,c : StyleColor}
 
 colorBright : ColorScheme 
-colorBright = {a ="#f5640a", b = "#bd770d", c = "#bd100d" }
-
+colorBright = {a ="#c20404", b = "#ed4102", c = "#f59505" }
+--colorBright = {a ="#f5640a", b = "#ed5c02", c = "#bd100d" }
+-- a red b orange c yellow 
 colorDark : ColorScheme 
 colorDark = {a ="#4d0b61", b = "#cf087c", c = "#7146f2" }
 -- bright color scheme 
